@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  status:
+    open: true

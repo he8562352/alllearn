@@ -1,0 +1,15 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: shop-service
+eureka:
+  client:
+#    healthcheck:
+#      enabled: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  status:
+    open: true
