@@ -3,6 +3,14 @@ server:
 spring:
   application:
     name: shop-service
+---
+spring:
+  rabbitmq:
+    host: 47.107.232.63
+    port: 5672
+    username: admin
+    password: admin
+---
 eureka:
   client:
 #    healthcheck:
@@ -13,3 +21,4 @@ eureka:
     register-with-eureka: true
   status:
     open: true
+
