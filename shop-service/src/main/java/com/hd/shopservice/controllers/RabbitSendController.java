@@ -1,5 +1,8 @@
 package com.hd.shopservice.controllers;
 
+import com.hd.common.config.rabbit.RabbitMQConfig;
+import com.hd.common.models.vo.UserVO;
+import com.hd.shopservice.config.RabbitConfig;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitSendController {
 
     @Autowired
-    AmqpTemplate amqpTemplate;
+    RabbitMQConfig rabbitMQConfig;
 
     @GetMapping("/send/{message}")
     public String send(@PathVariable String message){
-        amqpTemplate.convertAndSend("hello",message);
+        UserVO userVO = new UserVO();
+        userVO.age = 11;
+        userVO.name = "hedong::"+message;
+
+        rabbitMQConfig.sendPOJO(userVO);
+        System.out.println(message);
         return "success";
     }
 
