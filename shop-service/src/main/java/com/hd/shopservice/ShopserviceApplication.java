@@ -1,6 +1,7 @@
 package com.hd.shopservice;
 
 import com.hd.common.config.rabbit.RabbitMQConfig;
+import com.hd.common.config.rabbit.TopicRabbitMqConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -20,4 +21,10 @@ public class ShopserviceApplication {
     public RabbitMQConfig aa(){
         return new RabbitMQConfig();
     }
+
+//    @Bean
+//    public TopicRabbitMqConfig b(){
+//        return new TopicRabbitMqConfig();
+//    }
+
 }

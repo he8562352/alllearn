@@ -16,12 +16,17 @@ import org.springframework.stereotype.Component;
 public class RabbitMQConfig {
    @Autowired
     AmqpTemplate amqpTemplate;
+
    public void sendJson(String jsonString){
        amqpTemplate.convertAndSend("hello",jsonString);
    }
 
    public void sendPOJO(Object o){
        amqpTemplate.convertAndSend("pojo",o);
+   }
+
+   public void topicSend(Object o){
+       amqpTemplate.convertAndSend("exchange","topic.message",o);
    }
 
 }

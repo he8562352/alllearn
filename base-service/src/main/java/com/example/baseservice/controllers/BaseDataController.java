@@ -1,6 +1,5 @@
 package com.example.baseservice.controllers;
 
-import com.hd.common.models.domain.vo.AreaVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class BaseDataController {
 
     @GetMapping("/area")
-    public AreaVo getArea(){
+    public String getArea(){
         System.out.println("进来了");
-        AreaVo areaVo = new AreaVo(1,"四川");
-        return areaVo;
+    //    AreaVo areaVo = new AreaVo(1,"四川");
+        return "ddd";
     }
 
 }

@@ -1,9 +1,9 @@
 package com.hd.shopservice.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hd.common.config.rabbit.RabbitMQConfig;
 import com.hd.common.models.vo.UserVO;
-import com.hd.shopservice.config.RabbitConfig;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,14 +19,17 @@ public class RabbitSendController {
 
     @Autowired
     RabbitMQConfig rabbitMQConfig;
+    @Autowired
+    ObjectMapper objectMapper;
 
     @GetMapping("/send/{message}")
-    public String send(@PathVariable String message){
+    public String send(@PathVariable String message) throws JsonProcessingException {
         UserVO userVO = new UserVO();
         userVO.age = 11;
         userVO.name = "hedong::"+message;
-
+        rabbitMQConfig.sendJson(objectMapper.writeValueAsString(userVO));
         rabbitMQConfig.sendPOJO(userVO);
+        rabbitMQConfig.topicSend(userVO);
         System.out.println(message);
         return "success";
     }
